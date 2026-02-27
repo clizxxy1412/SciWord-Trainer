@@ -3,19 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SciWord Trainer</title>
+    <title>SciWord Trainer - Drawing Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>SciWord Trainer</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Welcome to SciWord Trainer</h2>
-            <p>Enhance your vocabulary and learning experience!</p>
-        </section>
-    </main>
+    <!-- Home Screen -->
+    <div id="homeScreen" class="screen active">
+        <div class="container">
+            <div class="home-content">
+                <h1 class="app-title">SciWord Trainer</h1>
+                <p class="app-subtitle">Master scientific vocabulary through drawing</p>
+                
+                <div class="gamemode-buttons">
+                    <button class="btn btn-primary" onclick="selectGameMode('timed')">
+                        <span class="btn-text">Timed Run</span>
+                        <span class="btn-desc">4 minutes, 40 words</span>
+                    </button>
+                    <button class="btn btn-primary" onclick="selectGameMode('infinite')">
+                        <span class="btn-text">Infinite Mode</span>
+                        <span class="btn-desc">No time limit</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Ready Screen -->
+    <div id="gameReadyScreen" class="screen">
+        <div class="container">
+            <div class="ready-content">
+                <h1>Ready to Begin?</h1>
+                <p class="subtitle" id="gameModeText"></p>
+                <p class="instruction">Pass the device to the first player and press START when everyone is ready</p>
+                
+                <div class="ready-buttons">
+                    <button class="btn btn-primary btn-large" onclick="startGame()">START GAME</button>
+                    <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+        <div class="game-header">
+            <div class="timer-display">
+                <span id="timer" class="timer">4:00</span>
+            </div>
+            <div class="stats-display">
+                <div class="stat-item">
+                    <span class="stat-label">Progress</span>
+                    <span id="wordCount" class="stat-value">1/40</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Average</span>
+                    <span id="avgTime" class="stat-value">0.0s</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <!-- Word Display -->
+            <div id="wordDisplay" class="word-display hidden">
+                <p class="word-label">Draw this word:</p>
+                <h2 id="word" class="word-text">WORD</h2>
+            </div>
+
+            <!-- Hidden Word Section (before reveal) -->
+            <div id="hiddenWordSection" class="hidden-word-section">
+                <div class="hidden-content">
+                    <p class="hidden-text">Word is Hidden</p>
+                    <p class="hidden-subtext">Press REVEAL when the device is passed to you</p>
+                    <button class="btn btn-success" onclick="revealWord()">REVEAL WORD</button>
+                </div>
+            </div>
+
+            <!-- Canvas for drawing -->
+            <div class="canvas-wrapper hidden" id="canvasWrapper">
+                <canvas id="drawingCanvas" class="drawing-canvas"></canvas>
+                <div class="canvas-tools">
+                    <button class="tool-btn" onclick="clearCanvas()" title="Clear drawing">Clear</button>
+                    <input type="color" id="colorPicker" value="#000000" class="color-picker" title="Choose color">
+                    <input type="range" id="brushSize" min="1" max="20" value="3" class="brush-slider" title="Brush size">
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="game-controls">
+                <button class="btn btn-success" id="correctBtn" onclick="markCorrect()">Correct</button>
+                <button class="btn btn-warning" id="skipBtn" onclick="skipWord()">Skip</button>
+                <button class="btn btn-danger" id="finishBtn" onclick="finishGame()">Finish Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+        <div class="container">
+            <div class="results-content">
+                <h1>Game Complete</h1>
+                
+                <div class="results-section">
+                    <h2>Performance Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-card-label">Words Completed</span>
+                            <span class="stat-card-value" id="wordsCompleted">0</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-card-label">Average Time</span>
+                            <span class="stat-card-value" id="finalAvgTime">0.0s</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-card-label">Total Time</span>
+                            <span class="stat-card-value" id="totalTime">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <h2>Top 10 Slowest Words</h2>
+                    <div id="slowestWordsList" class="slowest-words-list">
+                    </div>
+                </div>
+
+                <button class="btn btn-primary btn-large" onclick="goHome()">Return to Home</button>
+            </div>
+        </div>
+    </div>
+
     <script src="game.js"></script>
 </body>
 </html>
