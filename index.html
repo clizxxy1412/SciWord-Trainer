@@ -3,107 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SciWord Trainer - Pictionary Game</title>
+    <title>SciWord Trainer</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Home Screen -->
-    <div id="homeScreen" class="screen active">
-        <div class="container">
-            <h1>🎨 SciWord Trainer</h1>
-            <p class="subtitle">Draw and guess scientific vocabulary!</p>
-            <div class="gamemode-buttons">
-                <button class="btn btn-primary" onclick="selectGameMode('timed')">
-                    ⏱️ Timed Run (4 min, 40 words)
-                </button>
-                <button class="btn btn-primary" onclick="selectGameMode('infinite')">
-                    ♾️ Infinite Mode
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Game Ready Screen -->
-    <div id="gameReadyScreen" class="screen">
-        <div class="container">
-            <h1>Ready to Draw?</h1>
-            <p class="subtitle" id="gameModeText"></p>
-            <p class="instruction">Pass the device to the first person and press START when ready!</p>
-            <button class="btn btn-primary btn-large" onclick="startGame()">START GAME</button>
-            <button class="btn btn-secondary" onclick="goHome()">Back to Home</button>
-        </div>
-    </div>
-
-    <!-- Game Screen -->
-    <div id="gameScreen" class="screen">
-        <div class="game-header">
-            <div class="timer-section">
-                <span id="timer" class="timer">4:00</span>
-            </div>
-            <div class="stats-section">
-                <span id="wordCount">1/40</span>
-                <span id="avgTime">Avg: 0s</span>
-            </div>
-        </div>
-
-        <div class="game-content">
-            <!-- Word Display -->
-            <div id="wordDisplay" class="word-display">
-                <h2 id="word" class="word-text">Draw this word!</h2>
-                <p id="wordHint" class="word-hint"></p>
-            </div>
-
-            <!-- Hidden Word (before reveal) -->
-            <div id="hiddenWordSection" class="hidden-word-section">
-                <p class="hidden-text">📦 Word is hidden</p>
-                <p class="hidden-subtext">Press REVEAL when ready to see the word</p>
-                <button class="btn btn-success" onclick="revealWord()">REVEAL WORD</button>
-            </div>
-
-            <!-- Canvas for drawing -->
-            <canvas id="drawingCanvas" class="drawing-canvas"></canvas>
-
-            <!-- Control Buttons -->
-            <div class="game-controls">
-                <button class="btn btn-success" id="correctBtn" onclick="markCorrect()">✓ CORRECT</button>
-                <button class="btn btn-danger" id="skipBtn" onclick="skipWord()">SKIP</button>
-                <button class="btn btn-warning" id="finishBtn" onclick="finishGame()">FINISH NOW</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Results Screen -->
-    <div id="resultsScreen" class="screen">
-        <div class="container">
-            <h1>🎉 Game Over!</h1>
-            
-            <div class="results-section">
-                <h2>Statistics</h2>
-                <div class="stat-box">
-                    <span class="stat-label">Words Completed:</span>
-                    <span class="stat-value" id="wordsCompleted">0</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">Average Time per Word:</span>
-                    <span class="stat-value" id="finalAvgTime">0.0s</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">Total Time:</span>
-                    <span class="stat-value" id="totalTime">0:00</span>
-                </div>
-            </div>
-
-            <div class="results-section">
-                <h2>Top 10 Slowest Words</h2>
-                <div id="slowestWordsList" class="slowest-words-list">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </div>
-
-            <button class="btn btn-primary btn-large" onclick="goHome()">Return to Home</button>
-        </div>
-    </div>
-
+    <header>
+        <h1>SciWord Trainer</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Welcome to SciWord Trainer</h2>
+            <p>Enhance your vocabulary and learning experience!</p>
+        </section>
+    </main>
     <script src="game.js"></script>
 </body>
 </html>
